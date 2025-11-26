@@ -1,8 +1,14 @@
 // src/components/ProductCard.jsx
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../contexts/CartContext';
 
 const ProductCard = ({ product }) => {
+    const { addToCart } = useContext(CartContext);
+
+  const handleAdd = () => {
+    addToCart(product);
+  };
   return (
     <div className="card" style={cardStyle}>
       <img src={product.imageUrl || 'https://via.placeholder.com/400x300'} alt={product.name} style={imgStyle} />
@@ -11,6 +17,9 @@ const ProductCard = ({ product }) => {
         <p style={{ margin: '6px 0' }}>₹{product.price}</p>
         <p style={{ margin: '6px 0', fontSize: 13, color: '#555' }}>{product.description.slice(0, 80)}{product.description.length>80?'...':''}</p>
         <Link to={`/product/${product._id}`} style={btnStyle}>View</Link>
+         <button type="button" onClick={handleAdd} style={cartBtn}>
+            Add to Cart
+          </button>
       </div>
     </div>
   );
@@ -22,4 +31,20 @@ const cardStyle = {
 const imgStyle = { width: '100%', height: 160, objectFit: 'cover' };
 const btnStyle = { display: 'inline-block', marginTop: 8, padding: '8px 12px', background: '#0b5fff', color: '#fff', borderRadius: 6, textDecoration: 'none' };
 
+const viewBtn = {
+  display: 'inline-block',
+  padding: '8px 12px',
+  background: '#0b5fff',
+  color: '#fff',
+  borderRadius: 6,
+  textDecoration: 'none',
+};
+const cartBtn = {
+  padding: '8px 12px',
+  background: '#00b894',
+  color: '#fff',
+  borderRadius: 6,
+  border: 'none',
+  cursor: 'pointer',
+};
 export default ProductCard;

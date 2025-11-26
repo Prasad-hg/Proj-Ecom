@@ -6,27 +6,28 @@ import ProductPage from './pages/ProductPage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import { AuthProvider } from './contexts/AuthContext';
+import { CartProvider } from './contexts/CartContext';
+import Header from './components/Header';
+import Cart from './pages/Cart';
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <header style={{ padding: 12, borderBottom: '1px solid #eee', marginBottom: 12 }}>
-          <nav style={{ display: 'flex', gap: 12 }}>
-            <Link to="/">Home</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
-          </nav>
-        </header>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Header /> {/* Use your Header component here */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductPage />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </BrowserRouter>
+      </CartProvider>
     </AuthProvider>
   );
 }
+
 
 export default App;
