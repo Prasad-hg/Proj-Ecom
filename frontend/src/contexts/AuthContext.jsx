@@ -1,4 +1,4 @@
-// src/contexts/AuthContext.jsx
+
 import React, { createContext, useState, useEffect } from 'react';
 import api from '../api/api';
 
@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
   const login = (token, user) => setAuth({ token, user });
   const logout = () => setAuth({ token: null, user: null });
 
-  // convenience to refresh user from backend (optional)
   const fetchCurrentUser = async () => {
     try {
       const res = await api.get('/users/current');

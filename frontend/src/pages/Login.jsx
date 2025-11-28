@@ -1,8 +1,8 @@
-// src/pages/Login.jsx
+
 import React, { useState, useContext } from 'react';
 import api from '../api/api';
 import { AuthContext } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Login = () => {
   const { login } = useContext(AuthContext);
@@ -24,19 +24,43 @@ const Login = () => {
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Login</h2>
-      <form onSubmit={submit} style={{ maxWidth: 360 }}>
-        <input placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} required style={inputStyle} />
-        <input placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} required type="password" style={inputStyle} />
-        <button type="submit" style={btnStyle}>Login</button>
-        {err && <p style={{color:'red'}}>{err}</p>}
-      </form>
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-card-header">
+          <h2>Login</h2>
+          <p className="auth-subtitle">Welcome back! Sign in to continue shopping.</p>
+        </div>
+
+        <form onSubmit={submit} className="auth-form">
+          <input
+            className="auth-input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+          />
+          <input
+            className="auth-input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            type="password"
+            autoComplete="current-password"
+          />
+          <button type="submit" className="btn btn-primary auth-btn">
+            Login
+          </button>
+          {err && <p className="auth-error">{err}</p>}
+        </form>
+
+        <p className="auth-footer">
+          New to eKart? <Link to="/register">Create an account</Link>
+        </p>
+      </div>
     </div>
   );
 };
-
-const inputStyle = { display: 'block', width: '100%', padding: 8, margin: '8px 0' };
-const btnStyle = { padding: '8px 12px', background: '#0b5fff', color: '#fff', borderRadius: 6, border: 'none' };
 
 export default Login;

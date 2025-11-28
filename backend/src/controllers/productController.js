@@ -1,6 +1,6 @@
 const Product = require('../models/product');
 
-// GET /api/products
+// to get all products
 exports.getProducts = async (req, res, next) => {
   try {
     const products = await Product.find().sort({ createdAt: -1 });
@@ -10,7 +10,7 @@ exports.getProducts = async (req, res, next) => {
   }
 };
 
-// GET /api/products/:id
+// to view the details of single product..
 exports.getProductById = async (req, res, next) => {
   try {
     const { id } = req.params;

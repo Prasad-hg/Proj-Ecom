@@ -1,13 +1,13 @@
-// src/pages/Register.jsx
+
 import React, { useState, useContext } from 'react';
 import api from '../api/api';
 import { AuthContext } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const Register = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [name,setName] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [err, setErr] = useState('');
@@ -20,25 +20,56 @@ const Register = () => {
       login(res.data.token, res.data.user);
       navigate('/');
     } catch (error) {
-      setErr(error?.response?.data?.message || 'Register failed');
+      setErr(error?.response?.data?.message || 'Registration failed');
     }
   };
 
   return (
-    <div style={{ padding: 20 }}>
-      <h2>Register</h2>
-      <form onSubmit={submit} style={{ maxWidth: 360 }}>
-        <input placeholder="Name" value={name} onChange={e=>setName(e.target.value)} required style={inputStyle} />
-        <input placeholder="Email" value={email} onChange={e=>setEmail(e.target.value)} required style={inputStyle} />
-        <input placeholder="Password" value={password} onChange={e=>setPassword(e.target.value)} required type="password" style={inputStyle} />
-        <button type="submit" style={btnStyle}>Register</button>
-        {err && <p style={{color:'red'}}>{err}</p>}
-      </form>
+    <div className="auth-page">
+      <div className="auth-card">
+        <div className="auth-card-header">
+          <h2>Create Account</h2>
+          <p className="auth-subtitle">Join eKart and start exploring great deals.</p>
+        </div>
+
+        <form onSubmit={submit} className="auth-form">
+          <input
+            className="auth-input"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            autoComplete="name"
+          />
+          <input
+            className="auth-input"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+          />
+          <input
+            className="auth-input"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+            type="password"
+            autoComplete="new-password"
+          />
+          <button type="submit" className="btn btn-primary auth-btn">
+            Register
+          </button>
+          {err && <p className="auth-error">{err}</p>}
+        </form>
+
+        <p className="auth-footer">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      </div>
     </div>
   );
 };
-
-const inputStyle = { display: 'block', width: '100%', padding: 8, margin: '8px 0' };
-const btnStyle = { padding: '8px 12px', background: '#0b5fff', color: '#fff', borderRadius: 6, border: 'none' };
 
 export default Register;
