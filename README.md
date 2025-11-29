@@ -32,7 +32,8 @@ The app includes:
 
 ## 🌐 Live Demo
 
-- *It's live on **: `https://projecom.vercel.app/`
+- It's live on: https://projecom.vercel.app/
+
 ---
 
 ## 🧩 Features (What this app can do)
