@@ -399,3 +399,15 @@ body {
 .auth-footer a:hover {
   text-decoration: underline;
 }
+
+
+.btn-added {
+  background: #4caf50 !important;
+  color: white !important;
+  border: none;
+  cursor: default;
+}
+
+.btn-added:hover {
+  opacity: 0.9;
+}

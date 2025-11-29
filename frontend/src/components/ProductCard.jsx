@@ -1,14 +1,16 @@
 
-// src/components/ProductCard.jsx
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../contexts/CartContext';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useContext(CartContext);
+  const [added, setAdded] = useState(false);
 
   const handleAdd = () => {
     addToCart(product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000); 
   };
 
   const desc = product.description || '';
@@ -55,12 +57,13 @@ const ProductCard = ({ product }) => {
           <Link to={`/product/${product._id}`} className="btn btn-primary">
             View
           </Link>
+
           <button
             type="button"
             onClick={handleAdd}
-            className="btn btn-secondary"
+            className={added ? 'btn btn-added' : 'btn btn-secondary'}
           >
-            Add to Cart
+            {added ? 'Added ✓' : 'Add to Cart'}
           </button>
         </div>
       </div>
