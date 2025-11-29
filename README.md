@@ -32,9 +32,7 @@ The app includes:
 
 ## 🌐 Live Demo
 
-- **Frontend**: `https://your-frontend-url.vercel.app`
-- **Backend API**: `https://your-backend-url.onrender.com/api`
-
+- *It's live on **: `https://projecom.vercel.app/`
 ---
 
 ## 🧩 Features (What this app can do)
