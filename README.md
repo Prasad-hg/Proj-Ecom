@@ -173,7 +173,7 @@ proj_ecom/
     ├── .env
     └── package.json
 
-
+```
 🧭 Future Enhancements
 
 Product categories & filters
